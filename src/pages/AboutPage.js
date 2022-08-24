@@ -42,14 +42,14 @@ const AboutPage = () => {
                         <div className="col-lg-5">
                             <h2 className="display-4 font-weight-light text-white">Our team</h2>
                             <p className="font-italic text-light">Meet our veterans from various domains.</p>
-                            <p className="lead text-muted">Designed with love in India.</p>
+                            <p className="lead text-muted">Designed with love in Pakistan.</p>
                         </div>
                     </div>
 
                     <div className="row text-center">
                         <div className="col-xl-3 col-sm-6 mb-5">
                             <div className="bg-white rounded shadow-sm py-5 px-4"><img src="images/1.jpg" alt="" width="100" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
-                                <h5 className="mb-0">Muhammad Affan</h5>
+                                <h5 className="mb-0">Bohra Tech</h5>
                                 {/* <span className="small  text-muted">CEO - Founder</span> */}
                                 <ul className="social mb-0 list-inline mt-3">
                                     <li className="list-inline-item"><a href="!#" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
