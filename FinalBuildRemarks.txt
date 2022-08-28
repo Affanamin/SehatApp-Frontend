@@ -1,0 +1,1 @@
+## I have Fixed Consult issue in this build and integrate Kommunicate chatbot as well, and now this build can be send. 

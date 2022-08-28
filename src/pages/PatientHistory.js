@@ -4,10 +4,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ApiService from '../services/ApiService';
+import {useNavigate} from 'react-router-dom';
 
 export default function PatientHistory({pid, consult}) {
   const [found, setFound] = useState(true);
   const [patient, setPatient] = useState();  
+  const navigate = useNavigate();
   const [datatable, setDatatable] = useState({
     columns: [
       {
@@ -82,6 +84,15 @@ export default function PatientHistory({pid, consult}) {
         })
   },[pid]);
 
+  const toComponentB=()=>{
+    console.log("patient Without JSON :", patient );
+    console.log("--------------------------------------");
+    console.log("patient With JSON :", JSON.stringify(patient));
+    console.log("--------------------------------------");
+    console.log("WHAT I Am SENDING JSON :", {patient: JSON.stringify(patient)});
+    navigate('/consult',{state: {patient: JSON.stringify(patient)}});
+      }
+
   return (
     <div className="container d-flex flex-column align-items-center justify-content-center">  
       { found && consult && patient &&
@@ -113,8 +124,15 @@ export default function PatientHistory({pid, consult}) {
         <MDBDataTableV5 small scrollX hover order={['date', 'asc']} entriesOptions={[5, 10, 15, 20]} entries={5} pagesAmount={4} data={datatable} />
       </div>
       <div>
-        {found && consult ? <Link to={{pathname: '/consult', state: {patient: JSON.stringify(patient)}}} className="btn btn-primary">Consult</Link> : ''}
+      {/* <Link to={{pathname: '/consult', state: {id: 1, name: 'sabaoon', shirt: 'green'}}} >Learn More</Link> */}
+        {/* <Link to={{pathname: '/consult', state: {id:1,name:'sabaoon'}}} className="btn btn-primary">Consult</Link> */}
+        {/* <div> <a onClick={()=>{toComponentB()}}>Component B</a></div> */}
+        {found && consult ? <button type="submit" onClick={()=>{toComponentB()}} className="btn btn-primary">Consult</button>: ''}
+        {/* {found && consult ? <Link to={{pathname: '/consult', state: {patient: JSON.stringify(patient)}}} className="btn btn-primary">Consult</Link> : ''} */}
       </div>
     </div>
   );
 }
+
+
+{/* <button type="submit" onClick={submitHandler} className="btn btn-primary">Give Consultation</button> */}

@@ -1,21 +1,15 @@
-import { useNavigate , useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 import ApiService from "../services/ApiService";
+import {Link, useNavigate} from 'react-router-dom';
 
 export const ConsultationForm = () => {
     const {user} = useContext(UserContext);
     const navigate = useNavigate();
     const location = useLocation();
-    //location.state = "affan";
-    //debugger;
     const patient = location.state ? JSON.parse(location.state.patient): null;
-
     const _calculateAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e+10);
-
-    console.log("patient data:");
-    console.log(location);
-    
 
 
     const submitHandler = (e)=> {
@@ -44,8 +38,8 @@ export const ConsultationForm = () => {
     return (
         
         <div className="container d-flex flex-column align-items-center justify-content-center" style={{minHeight: "100vh", width: "40%"}}>
-            {/* {patient &&<div> */}
-            <div>
+            
+            {patient && <div>
                 <h1 className="display-6 text-center mb-5 ">Consultation Form</h1>
                 <form className="row g-3">
                     <div className="col-lg-2">
@@ -54,15 +48,15 @@ export const ConsultationForm = () => {
                     </div>
                     <div className="col-lg-4">
                         <label htmlFor="name" className="form-label">Name</label>
-                        <input type="text" className="form-control" id="name" placeholder="abc1" disabled readOnly/>
+                        <input type="text" className="form-control" id="name" placeholder={patient.name} disabled readOnly/>
                     </div>
-                    <div className="col-lg-2">
+                    { <div className="col-lg-2">
                         <label htmlFor="age" className="form-label">Age</label>
-                        <input type="text" className="form-control" id="age" placeholder="abc2" disabled readOnly/>
-                    </div>
+                        <input type="text" className="form-control" id="age" placeholder={_calculateAge(patient.dob)} disabled readOnly/>
+                    </div> }
                     <div className="col-lg-4">
                         <label htmlFor="mobile" className="form-label">Mobile</label>
-                        <input type="text" className="form-control" id="mobile" placeholder="abc3" disabled readOnly/>
+                        <input type="text" className="form-control" id="mobile" placeholder={patient.mobile} disabled readOnly/>
                     </div>
                     <div className="col-12">
                         <label htmlFor="diagnosis" className="form-label">Diagnosis</label>
@@ -80,8 +74,8 @@ export const ConsultationForm = () => {
                         <button type="submit" onClick={submitHandler} className="btn btn-primary">Give Consultation</button>
                     </div>
                 </form>
-            {/* </div>} */}
-            </div>
+            </div>} 
+            
         </div>
     )
 }

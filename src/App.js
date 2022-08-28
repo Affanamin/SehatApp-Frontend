@@ -17,6 +17,7 @@ import { ConsultationForm } from './pages/ConsultationForm';
 //import { ConsultationForm } from './pages/ConsultationForm';
 
 import AboutPage  from './pages/AboutPage';
+import KommunicateChat from './chat';
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="App">
+      <KommunicateChat/>
       <BrowserRouter>
       <UserContext.Provider value = {{user, setUser}}>
       <Navbar></Navbar>
